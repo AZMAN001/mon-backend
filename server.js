@@ -1,19 +1,14 @@
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
 const app = express();
 
-// Autorise les requêtes depuis n'importe où (pour simplifier)
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
+app.use(cors()); // Autorise les requêtes depuis n'importe où
+
+app.get('/api/message', (req, res) => {
+  res.json({ message: "Salut depuis le backend !" });
 });
 
-// Répond à l’URL "/api"
-app.get("/api", (req, res) => {
-    res.json({ message: "Bonjour depuis le serveur ! 🚀" });
-});
-
-// Démarrer le serveur
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  console.log(`API en ligne sur http://localhost:${PORT}`);
 });
